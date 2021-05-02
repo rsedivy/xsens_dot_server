@@ -43,6 +43,7 @@ var WebGuiHandler       = require('./webGuiHandler');
 var FunctionalComponent = require('./functionalComponent');
 var SyncManager         = require('./syncManager');
 var events              = require('events');
+let socketServer 		= require('./socketServer')
 
 // =======================================================================================
 // Constants
@@ -883,6 +884,7 @@ var transitions =
             component.csvBuffer += Object.values(parameters).join() + '\n';
 
             component.gui.sendGuiEvent( 'sensorOrientation', parameters );
+            socketServer.sendSensorData(parameters);
 	    }
     },
     {
